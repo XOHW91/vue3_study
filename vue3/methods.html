@@ -1,0 +1,22 @@
+<div id="app">
+    <p>{{ count }}</p>
+    <button v-on:click="addCount()">+</button>
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            // data 속성에 함수를 연결 
+            return {
+                // return으로 객체를 넘기게 되면 이 안에서 정의한 값들에 리액티비티가 주입된다.
+                count: 0
+            }
+        },
+        methods: {
+            addCount() {
+                this.count++; // this는 이 createApp에 있는 값에 접근하겠다는 의미 
+            }
+        }
+    }).mount('#app')
+</script>

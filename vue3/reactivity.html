@@ -1,0 +1,25 @@
+<div id="app">
+    
+</div>
+<script>
+    var data = {
+        message: 10
+    }
+
+    function render(sth) {
+        const div = document.querySelector('#app');
+        div.innerHTML = sth;
+    } 
+
+    var app = new Proxy(data, { // app은 Proxy로 래핑된 data객체를 나타낸다. app을 통해 data 객체의 프로퍼티에 접근하거나 값을 변경할 때 Proxy에 정의된 동작이 실행된다. 
+        // Proxy : 메서드의 기본적인 동작을 가로채서 추가적인 작업을 수행하거나 대체하는 행위/객체
+        get() {
+            console.log('값 접근');
+        },
+        set(target, prop, newValue) {
+            console.log('값 갱신');
+            target[prop] = newValue; // 대상객체:target 속성:prop ==> 대상객체의 속성값에 새로운 값을 넣는다는 것 
+            render(newValue);
+        }
+    })
+</script>
